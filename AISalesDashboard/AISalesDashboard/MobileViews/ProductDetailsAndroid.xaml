@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AISalesDashboard"
+             x:Class="AISalesDashboard.ProductDetailsAndroid">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <local:ProductIdFormatter x:Key="ProductIdFormatter"/>
+        </ResourceDictionary>
+        <Style x:Key="labelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="RobotoMedium"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColor}}"/>
+        </Style>
+    </ContentView.Resources>
+    <ScrollView Background="{AppThemeBinding Light={StaticResource SalesDemoMainContentBackground}, Dark={StaticResource SalesDemoMainContentBackgroundDark}}" Padding="12">
+        <Grid RowDefinitions="2*,1*,7*" RowSpacing="12">
+            <local:CustomBorder>
+                <local:CustomBorder.Content>
+                    <local:ProductChart/>
+                </local:CustomBorder.Content>
+            </local:CustomBorder>
+            <local:CustomBorder HeightRequest="216" Grid.Row="1">
+                <local:CustomBorder.Content>
+                    <local:ProductSalesRegion/>
+                </local:CustomBorder.Content>
+            </local:CustomBorder>
+            <local:CustomBorder Grid.Row="2">
+                <local:CustomBorder.Content>
+                    <local:ProductList/>
+                </local:CustomBorder.Content>
+            </local:CustomBorder>
+        </Grid>
+    </ScrollView>
+</ContentView>

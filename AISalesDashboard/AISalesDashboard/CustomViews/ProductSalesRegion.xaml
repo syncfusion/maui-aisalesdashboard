@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:map="clr-namespace:Syncfusion.Maui.Maps;assembly=Syncfusion.Maui.Maps"
+             xmlns:local="clr-namespace:AISalesDashboard"
+             xmlns:imageExtention="clr-namespace:SampleBrowser.Maui.Base.Converters;assembly=SampleBrowser.Maui.Base"
+             x:Class="AISalesDashboard.ProductSalesRegion">
+
+    <ContentView.Resources>
+
+        <Style x:Key="labelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="RobotoMedium"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}"/>
+        </Style>
+
+    </ContentView.Resources>
+
+    <VerticalStackLayout x:DataType="local:SalesTrendsViewModel">
+
+        <Label Text="Top Regions" FontSize="16" Margin="{OnPlatform Default='16,16,16,10',MacCatalyst='16,16,16,0', Android='12,12,0,0', iOS='12,12,0,0'}" Style="{StaticResource labelStyle}" LineHeight="1.5" CharacterSpacing="0.15" HeightRequest="24"/>
+
+        <map:SfMaps WidthRequest="{OnPlatform MacCatalyst=500, Default=600, Android=312, iOS=312}" HeightRequest="{OnPlatform MacCatalyst=500, Default=295, Android=154, iOS=154}" Margin="{OnPlatform Android='12,14,12,12', iOS='12,14,12,12', MacCatalyst='0,-30,0,0'}">
+            <map:SfMaps.Layer>
+                <map:MapShapeLayer ShapesSource="https://cdn.syncfusion.com/maps/map-data/world-map.json"
+                     Markers="{Binding MapMarkerCollection}"
+                     ShapeHoverFill="Transparent" ShapeHoverStroke="Transparent">
+
+                    <map:MapShapeLayer.MarkerTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout HorizontalOptions="Center" x:DataType="local:CustomMarker" WidthRequest="{OnPlatform WinUI=50}">
+                                <Path Data="M10.7,4.5C7.4999914,4.5 4.9000191,7.3000183 4.9000191,10.800018 4.9000191,14.300018 7.4999914,17.100006 10.7,17.100006 13.900009,17.100006 16.499982,14.300018 16.499982,10.800018 16.599957,7.3000183 13.999984,4.5 10.7,4.5z M10.7,0C16.599957,0 21.400001,5.2000122 21.400001,11.5 21.400001,17.899994 10.7,32 10.7,32 10.7,32 5.5881173E-08,17.899994 0,11.5 5.5881173E-08,5.2000122 4.7999825,0 10.7,0z" Fill="#FFE81E13" Width="{OnPlatform MacCatalyst=40, Default=14}" Height="{OnPlatform MacCatalyst=40, Default=20}" VerticalOptions="Center" HorizontalOptions="Center" />
+                                <Label Text="{Binding Name}" FontSize="{OnPlatform MacCatalyst=16, Default=12}" HorizontalOptions="Center" FontFamily="Roboto" TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}"/>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </map:MapShapeLayer.MarkerTemplate>
+
+                </map:MapShapeLayer>
+            </map:SfMaps.Layer>
+        </map:SfMaps>
+    </VerticalStackLayout>
+</ContentView>

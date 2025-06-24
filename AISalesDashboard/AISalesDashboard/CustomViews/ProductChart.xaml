@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:local="clr-namespace:AISalesDashboard"
+             xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             x:Class="AISalesDashboard.ProductChart"
+             x:DataType="local:SalesTrendsViewModel">
+
+    <ContentView.Resources>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="RobotoMedium"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}"/>
+        </Style>
+        <local:SegmentColorConverter x:Key="ValueConverter"/>
+    </ContentView.Resources>
+
+    <chart:SfCircularChart Margin="{OnPlatform Default=16, Android='12,16', iOS='12,16', MacCatalyst='16,16,16,-40'}" HeightRequest="{OnPlatform Android=342, iOS=342}" VerticalOptions="{OnPlatform Android=Start, iOS=Start}">
+        <chart:SfCircularChart.Title>
+            <Label Text="Top Products" FontSize="16" Style="{StaticResource LabelStyle}" LineHeight="1.5" CharacterSpacing="0.15" HeightRequest="24"/>
+        </chart:SfCircularChart.Title>
+
+        <chart:SfCircularChart.Legend>
+            <chart:ChartLegend Placement="Bottom">
+                <chart:ChartLegend.ItemsLayout>
+                    <FlexLayout Direction="Row"
+                        Wrap="Wrap"
+                        JustifyContent="Center"
+                        AlignItems="Center"
+                        WidthRequest="{OnPlatform Default=500, Android=300, iOS=300}" HeightRequest="{OnPlatform iOS=70, Android=70}"/>
+                </chart:ChartLegend.ItemsLayout>
+                <chart:ChartLegend.ItemTemplate>
+                    <DataTemplate x:DataType="core:LegendItem">
+                        <HorizontalStackLayout Spacing="5" Margin="15,5,0,5">
+                            <BoxView WidthRequest="15"
+                                     HeightRequest="2"
+                                     Background="{Binding IconBrush}" CornerRadius="5"/>
+
+                            <Label Text="{Binding Text}"
+                                   FontSize="12" FontFamily="Roboto"
+                                   TextColor="{AppThemeBinding Light={StaticResource SalesDemoHeaderLabelTextColor}, Dark={StaticResource SalesDemoHeaderLabelTextColorDark}}"/>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </chart:ChartLegend.ItemTemplate>
+            </chart:ChartLegend>
+        </chart:SfCircularChart.Legend>
+
+        <chart:DoughnutSeries ItemsSource="{Binding Products}" ShowDataLabels="True"
+                              XBindingPath="Name" YBindingPath="BasePrice" PaletteBrushes="{Binding PaletteBrushes1}" InnerRadius="0.5" Radius="0.7">
+            <chart:DoughnutSeries.LabelTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Item, Converter={StaticResource ValueConverter}, ConverterParameter='BasePrice'}" x:DataType="chart:ChartDataLabel"
+                           FontSize="14" FontFamily="Roboto"
+                           TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}"/>
+                </DataTemplate>
+            </chart:DoughnutSeries.LabelTemplate>
+            <chart:DoughnutSeries.DataLabelSettings>
+                <chart:CircularDataLabelSettings LabelPosition="Outside" SmartLabelAlignment="Shift">
+                    <chart:CircularDataLabelSettings.ConnectorLineSettings>
+                        <chart:ConnectorLineStyle ConnectorType="Line"/>
+                    </chart:CircularDataLabelSettings.ConnectorLineSettings>
+                </chart:CircularDataLabelSettings>
+            </chart:DoughnutSeries.DataLabelSettings>
+        </chart:DoughnutSeries>
+    </chart:SfCircularChart>
+</ContentView>

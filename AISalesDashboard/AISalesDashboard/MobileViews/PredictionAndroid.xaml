@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AISalesDashboard"
+             xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             x:Class="AISalesDashboard.PredictionAndroid"
+             x:DataType="local:PredictionViewModel">
+
+    <ScrollView Background="{AppThemeBinding Light={StaticResource SalesDemoMainContentBackground}, Dark={StaticResource SalesDemoMainContentBackgroundDark}}" Padding="12">
+        <Grid RowDefinitions="1*, 2*, 5*, 2*" RowSpacing="12">
+
+            <Grid Grid.Row="0" ColumnDefinitions="5*, 5*" ColumnSpacing="12">
+                <local:CustomBorder Grid.Column="0" HeightRequest="68">
+                    <local:PredictionRevenue VerticalOptions="Center"/>
+                </local:CustomBorder>
+                <local:CustomBorder Grid.Column="1" HeightRequest="68">
+                    <local:PredictionPeriod VerticalOptions="Center"/>
+                </local:CustomBorder>
+            </Grid>
+
+            <local:CustomBorder Grid.Row="1" HeightRequest="199">
+                <local:AverageConfidence/>
+            </local:CustomBorder>
+            <local:CustomBorder Grid.Row="2">
+                    <local:PredictionDetails/>
+            </local:CustomBorder>
+            <local:CustomBorder Grid.Row="3" Padding="12">
+                    <local:AIInsightsDetails/>
+            </local:CustomBorder>
+
+            <core:SfBusyIndicator Grid.Row="0" Grid.RowSpan="4" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" AnimationType="Cupertino" SizeFactor="0.8"/>
+        </Grid>
+    </ScrollView>
+
+</ContentView>
+

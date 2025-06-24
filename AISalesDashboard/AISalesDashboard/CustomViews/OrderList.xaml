@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dataGrid="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             xmlns:local="clr-namespace:AISalesDashboard"
+             xmlns:imageExtention="clr-namespace:SampleBrowser.Maui.Base.Converters;assembly=SampleBrowser.Maui.Base"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:comboBox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             x:Class="AISalesDashboard.OrderList"
+             x:DataType="local:SalesTrendsViewModel">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <imageExtention:SfImageSourceConverter x:Key="imageConverter"/>
+            <local:BoolToColorConverter x:Key="colorConverter"/>
+        </ResourceDictionary>
+        <Style x:Key="labelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="RobotoMedium"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}"/>
+        </Style>
+        <dataGrid:DataGridStyle x:Key="customStyle"
+                         HeaderRowTextColor="{AppThemeBinding Light='#1C1B1F', Dark='#E6E1E5'}"
+                         RowTextColor="{AppThemeBinding Light='#1C1B1F', Dark='#E6E1E5'}"
+                         HeaderRowBackground="{AppThemeBinding Light='#F7F2FB', Dark='#25232A'}"
+                         HeaderRowFontSize="14"
+                         RowFontSize="14"
+                         HeaderRowFontFamily="RobotoMedium"
+                         RowFontFamily="Roboto" GridLineStrokeThickness="2" HeaderGridLineStrokeThickness="2"/>
+
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="{OnPlatform Default='1.3*,7.8*,1*',MacCatalyst='1*,8.5*,0.5*', Android='1*,8*,1*', iOS='1*,8*,1*'}" Padding="5">
+        <Grid Grid.Row="0" ColumnDefinitions="{OnPlatform Default='8*, 2*'}" Margin="{OnPlatform Default=16, Android='12,20,12,0', iOS='12,20,12,0'}">
+            <Label Text="Product’s list" FontSize="16" VerticalOptions="Center" HorizontalOptions="Start" FontFamily="RobotoMedium"
+                   TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}" LineHeight="1.5" CharacterSpacing="0.15" HeightRequest="24"/>
+
+            <HorizontalStackLayout IsVisible="{OnPlatform Android=False, iOS=False}" Grid.Column="2" HorizontalOptions="EndAndExpand">
+                <Border HeightRequest="40" Background="Transparent"
+                        Stroke="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ExportAsPDF"/>
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="*,9*" Padding="16,10" ColumnSpacing="8">
+                        <Label Grid.Column="0" FontSize="18" Text="&#xe799;"
+                               TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}"
+                               FontFamily="{OnPlatform Default='MauiMaterialAssets', WinUI='MauiMaterialAssets.ttf#MauiMaterialAssets'}" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" Text="Export PDF"
+                               TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}"
+                               HeightRequest="{OnPlatform Default=14, MacCatalyst=20}" WidthRequest="70" Margin="{OnPlatform Default='0,2,0,0', MacCatalyst='0,-5,0,0'}"
+                               LineHeight="1.43" CharacterSpacing="0.1" VerticalTextAlignment="Center"/>
+                    </Grid>
+                </Border>
+            </HorizontalStackLayout>
+
+            <buttons:SfButton x:Name="customComboBox" Grid.Column="2" Text="&#xe5d4;" FontFamily="MaterialSymbolOutlined" FontSize="30"
+                              IsVisible="{OnPlatform WinUI=False, MacCatalyst=False}" Clicked="SfButton_Clicked"
+                              Background="Transparent" TextColor="{AppThemeBinding Light={StaticResource SalesDemoComboBoxDropDownIcon}, Dark={StaticResource SalesDemoComboBoxDropDownIconDark}}"
+                              CornerRadius="70" HeightRequest="50" WidthRequest="50"/>
+        </Grid>
+
+        <!-- Data Grid -->
+        <dataGrid:SfDataGrid Grid.Row="1" x:Name="dataGrid" DefaultStyle="{StaticResource customStyle}" ItemsSource="{Binding OrderPagedItems}"
+                             HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" MinimumHeightRequest="150"
+                             Margin="{OnPlatform Default='16,0,16,16', Android='12,20,12,12', iOS='12,20,12,12'}"
+                             AutoGenerateColumnsMode="None" SortingMode="Single" HeaderGridLinesVisibility="Both" GridLinesVisibility="Both" ColumnWidthMode="Fill">
+
+            <dataGrid:SfDataGrid.Columns>
+
+                <dataGrid:DataGridNumericColumn HeaderText="OrderID" MappingName="Id" HeaderTextAlignment="Start" CellTextAlignment="Start"
+                                                MaximumWidth="{OnPlatform WinUI=150, MacCatalyst=150}" MinimumWidth="{OnPlatform Android=100, iOS=100}" Format="'#'#.#"/>
+
+                <dataGrid:DataGridTextColumn HeaderText="Customer" MappingName="Customer" HeaderTextAlignment="Start" CellTextAlignment="Start"
+                                             MaximumWidth="{OnPlatform WinUI=180, MacCatalyst=180}" MinimumWidth="{OnPlatform Android=100, iOS=100}"/>
+
+                <dataGrid:DataGridTemplateColumn HeaderText="Product" MappingName="Product" HeaderTextAlignment="Start" ColumnWidthMode="LastColumnFill"
+                                                 MinimumWidth="{OnPlatform Default=120, Android=250, iOS=250}">
+                    <dataGrid:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout Spacing="8" Padding="8" Margin="10,0,0,0" x:DataType="local:OrderInfo">
+                                <Image Source="{Binding Image, Converter={StaticResource imageConverter}}" HeightRequest="32" WidthRequest="32"/>
+                                <Label Text="{Binding Product}" FontFamily="Roboto"
+                                       VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                       TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </dataGrid:DataGridTemplateColumn.CellTemplate>
+                </dataGrid:DataGridTemplateColumn>
+
+                <dataGrid:DataGridTextColumn HeaderText="Order Date" MappingName="OrderDate" HeaderTextAlignment="Start" CellTextAlignment="Start"
+                                             MaximumWidth="{OnPlatform WinUI=180, MacCatalyst=180}" MinimumWidth="{OnPlatform Android=150, iOS=150}"/>
+
+                <dataGrid:DataGridTemplateColumn HeaderText="Status" MappingName="OrderStatus" HeaderTextAlignment="Start" ColumnWidthMode="LastColumnFill"
+                                                 MaximumWidth="{OnPlatform WinUI=180, MacCatalyst=180}" MinimumWidth="{OnPlatform Android=150, iOS=150}">
+                    <dataGrid:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout Spacing="8" Padding="8" Margin="10,0,0,0" x:DataType="local:OrderInfo">
+                                <BoxView Background="{Binding Brush}" HeightRequest="20" WidthRequest="20" CornerRadius="3"/>
+                                <Label Text="{Binding OrderStatus}" FontFamily="Roboto" VerticalTextAlignment="Center"
+                                       TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </dataGrid:DataGridTemplateColumn.CellTemplate>
+                </dataGrid:DataGridTemplateColumn>
+
+                <dataGrid:DataGridNumericColumn HeaderText="Amount" MappingName="ActualPrice" Format="$#.#"
+                                                HeaderTextAlignment="Start" CellTextAlignment="Start" MaximumWidth="{OnPlatform WinUI=180, MacCatalyst=180}" MinimumWidth="{OnPlatform Android=100, iOS=100}"/>
+
+                <dataGrid:DataGridNumericColumn HeaderText="Selling Price" MappingName="SellingPrice" Format="$#.#"
+                                                HeaderTextAlignment="Start" CellTextAlignment="Start" MaximumWidth="{OnPlatform WinUI=180, MacCatalyst=180}" MinimumWidth="{OnPlatform Android=120, iOS=120}"/>
+            </dataGrid:SfDataGrid.Columns>
+        </dataGrid:SfDataGrid>
+
+        <!-- Custom Dropdown -->
+        <Border x:Name="customDropdown" IsVisible="False" Grid.Row="1" WidthRequest="100" HeightRequest="40" HorizontalOptions="End"
+                VerticalOptions="Start" Background="{AppThemeBinding Light={StaticResource SalesDemoComboboxIconBackgroundAndroid}, Dark={StaticResource SalesDemoComboboxIconBackgroundAndroidDark}}" Stroke="Transparent" StrokeShape="RoundRectangle 10" Margin="0,10,25,0">
+            <Border.Shadow>
+                <Shadow Brush="#1F000000" Offset="0,1" Radius="3" Opacity="0.7"/>
+            </Border.Shadow>
+            <Label Text="Export Pdf" Padding="10" FontSize="14" TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ExportAsPDF"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </Border>
+
+        <!-- Pagination Controls -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20" Margin="10" Grid.Row="2">
+            <Button Text="&#xe5e0;" FontFamily="MaterialIcons" Command="{Binding PreviousProductPageCommand}" TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}"  IsEnabled="{Binding HasPreviousOrderPage}"
+                    Background="{Binding HasPreviousOrderPage, Converter={StaticResource colorConverter}}"
+                    CornerRadius="10"/>
+            <Label Text="{Binding OrderPageInfo}" VerticalOptions="Center" Style="{StaticResource labelStyle}"/>
+            <Button Text="&#xe5e1;" FontFamily="MaterialIcons" Command="{Binding NextProductPageCommand}" TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}"  IsEnabled="{Binding HasNextOrderPage}"
+                    Background="{Binding HasNextOrderPage, Converter={StaticResource colorConverter}}"
+                    CornerRadius="10"/>
+        </HorizontalStackLayout>
+        
+    </Grid>
+</ContentView>

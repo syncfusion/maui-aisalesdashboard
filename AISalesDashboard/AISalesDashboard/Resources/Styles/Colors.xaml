@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
+
+    <Color x:Key="Primary">#512BD4</Color>
+    <Color x:Key="PrimaryDark">#ac99ea</Color>
+    <Color x:Key="PrimaryDarkText">#242424</Color>
+    <Color x:Key="Secondary">#DFD8F7</Color>
+    <Color x:Key="SecondaryDarkText">#9880e5</Color>
+    <Color x:Key="Tertiary">#2B0B98</Color>
+
+    <Color x:Key="White">White</Color>
+    <Color x:Key="Black">Black</Color>
+    <Color x:Key="Magenta">#D600AA</Color>
+    <Color x:Key="MidnightBlue">#190649</Color>
+    <Color x:Key="OffBlack">#1f1f1f</Color>
+
+    <Color x:Key="Gray100">#E1E1E1</Color>
+    <Color x:Key="Gray200">#C8C8C8</Color>
+    <Color x:Key="Gray300">#ACACAC</Color>
+    <Color x:Key="Gray400">#919191</Color>
+    <Color x:Key="Gray500">#6E6E6E</Color>
+    <Color x:Key="Gray600">#404040</Color>
+    <Color x:Key="Gray900">#212121</Color>
+    <Color x:Key="Gray950">#141414</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
+
+    <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
+    <SolidColorBrush x:Key="Gray200Brush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="Gray300Brush" Color="{StaticResource Gray300}"/>
+    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}"/>
+    <SolidColorBrush x:Key="Gray500Brush" Color="{StaticResource Gray500}"/>
+    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
+    <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
+    <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <!--Light Theme-->
+    <Color x:Key="SalesDemoNavigationDrawerTextColor">#1C1B1F</Color>
+    <Color x:Key="SalesDemoNavigationDrawerHeaderTextColor">#FFFFFF</Color>
+    <Color x:Key="SalesDemoNavigationDrawerBackgroundColor">#6750A4</Color>
+    <Color x:Key="SalesDemoNavigationContentBackground">#CAC4D0</Color>
+    <Color x:Key="SalesDemoAssistViewIconBackground">#FFFBFE</Color>
+    <Color x:Key="SalesDemoAssistViewHeaderTextColor">#FFFFFF</Color>
+    <Color x:Key="SalesDemoAssistViewShadowColor">Black</Color>
+    <Color x:Key="SalesDemoHeaderLabelTextColor">#49454F</Color>
+    <Color x:Key="SalesDemoContentLabelTextColor">#1C1B1F</Color>
+    <Color x:Key="SalesDemoMainContentBackground">#F7F2FB</Color>
+    <Color x:Key="SalesDemoContentBackground">#FFFBFE</Color>
+    <Color x:Key="SalesDemoComboBoxDropDownIcon">#49454F</Color>
+    <Color x:Key="SalesDemoChartAxisLabelTextColor">#49454F</Color>
+    <Color x:Key="SalesDemoChartGridLineColor">#E7E0EC</Color>
+    <Color x:Key="SalesDemoChartAxisLineColor">#CAC4D0</Color>
+    <Color x:Key="SalesDemoRevenueChartStroke">#3068F7</Color>
+    <Color x:Key="SalesDemoRevenueChartFillGradient1">#C43068F7</Color>
+    <Color x:Key="SalesDemoRevenueChartFillGradient2">#0073E600</Color>
+    <Color x:Key="SalesDemoQuantityChartFill">#7442DD</Color>
+    <Color x:Key="SalesDemoMarginChartFill">#F4890D</Color>
+    <Color x:Key="SalesDemoGaugeNeedleFill">Black</Color>
+    <Color x:Key="SalesDemoPredictedChartFill">#116DF9</Color>
+    <Color x:Key="SalesDemoPredictedBoundFill">#CAC4D0</Color>
+    <Color x:Key="SalesDemoTabViewBackgroundColor">#6750A4</Color>
+    <Color x:Key="SalesDemoTabViewIndicatorBackground">#F5F5F5</Color>
+    <Color x:Key="SalesDemoDataGridQuantityContentBackground">#F6EDFF</Color>
+    <Color x:Key="SalesDemoComboboxIconBackgroundAndroid">#EADDFF</Color>
+
+    <!--Dark Theme-->
+    <Color x:Key="SalesDemoNavigationDrawerTextColorDark">#E6E1E5</Color>
+    <Color x:Key="SalesDemoNavigationDrawerHeaderTextColorDark">#381E72</Color>
+    <Color x:Key="SalesDemoNavigationDrawerBackgroundColorDark">#D0BCFF</Color>
+    <Color x:Key="SalesDemoNavigationContentBackgroundDark">#25232A</Color>
+    <Color x:Key="SalesDemoAssistViewIconBackgroundDark">#1C1B1F</Color>
+    <Color x:Key="SalesDemoAssistViewHeaderTextColorDark">#381E72</Color>
+    <Color x:Key="SalesDemoAssistViewShadowColorDark">Gray</Color>
+    <Color x:Key="SalesDemoHeaderLabelTextColorDark">#CAC4D0</Color>
+    <Color x:Key="SalesDemoContentLabelTextColorDark">#E6E1E5</Color>
+    <Color x:Key="SalesDemoMainContentBackgroundDark">#25232A</Color>
+    <Color x:Key="SalesDemoContentBackgroundDark">#1C1B1F</Color>
+    <Color x:Key="SalesDemoComboBoxDropDownIconDark">#CAC4D0</Color>
+    <Color x:Key="SalesDemoChartAxisLabelTextColorDark">#CAC4D0</Color>
+    <Color x:Key="SalesDemoChartGridLineColorDark">#36323B</Color>
+    <Color x:Key="SalesDemoChartAxisLineColorDark">#49454F</Color>
+    <Color x:Key="SalesDemoRevenueChartStrokeDark">#4A7BF8</Color>
+    <Color x:Key="SalesDemoRevenueChartFillGradient1Dark">#C44A7BF8</Color>
+    <Color x:Key="SalesDemoRevenueChartFillGradient2Dark">#1B263B00</Color>
+    <Color x:Key="SalesDemoQuantityChartFillDark">#10AD4F</Color>
+    <Color x:Key="SalesDemoMarginChartFillDark">#C4A124</Color>
+    <Color x:Key="SalesDemoGaugeNeedleFillDark">#49454F</Color>
+    <Color x:Key="SalesDemoPredictedChartFillDark">#10AD4F</Color>
+    <Color x:Key="SalesDemoPredictedBoundFillDark">#49454F</Color>
+    <Color x:Key="SalesDemoTabViewBackgroundColorDark">#D0BCFF</Color>
+    <Color x:Key="SalesDemoTabViewIndicatorBackgroundDark">#381E72</Color>
+    <Color x:Key="SalesDemoBackArrowButtonBackgroundDark">Transparent</Color>
+    <Color x:Key="SalesDemoDataGridQuantityContentBackgroundDark">#381E72</Color>
+    <Color x:Key="SalesDemoComboboxIconBackgroundAndroidDark">#4A4458</Color>
+    
+</ResourceDictionary>
