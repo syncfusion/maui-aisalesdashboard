@@ -63,7 +63,7 @@
                                Text="Export PDF"
                                TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}"
                                HeightRequest="{OnPlatform Default=14, MacCatalyst=20}"
-                               WidthRequest="70" Margin="{OnPlatform Default='0,2,0,0', MacCatalyst='0,-5,0,0'}"
+                               WidthRequest="70" Margin="{OnPlatform Default='0,1,0,0', MacCatalyst='0,-3,0,0'}"
                                LineHeight="1.43" CharacterSpacing="0.1"
                                VerticalTextAlignment="Center" />
                     </Grid>

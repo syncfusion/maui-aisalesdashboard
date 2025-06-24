@@ -52,11 +52,11 @@
                 {
                     foreach (var region in _regions!)
                     {
-                        var baseQuantity = CalculateBaseQuantity(product.Id);
-                        var seasonalFactor = CalculateSeasonalFactor(product.Category, date.Month);
-                        var regionalFactor = CalculateRegionalFactor(region.Id);
+                        var baseQuantity = CalculateBaseQuantity(product.Id!);
+                        var seasonalFactor = CalculateSeasonalFactor(product.Category!, date.Month);
+                        var regionalFactor = CalculateRegionalFactor(region.Id!);
                         var dayOfWeekFactor = CalculateDayOfWeekFactor(date.DayOfWeek);
-                        var trendFactor = CalculateTrendFactor(product.Id, (date - startDate).Days);
+                        var trendFactor = CalculateTrendFactor(product.Id!, (date - startDate).Days);
                         var randomFactor = 0.8 + random.NextDouble() * 0.4;
 
                         var quantity = (int)(baseQuantity * seasonalFactor * regionalFactor * dayOfWeekFactor * trendFactor * randomFactor);
