@@ -202,7 +202,7 @@ namespace AISalesDashboard
         {
             var executingAssembly = typeof(App).GetTypeInfo().Assembly;
 
-            using (var stream = executingAssembly.GetManifestResourceStream("AISalesDashboard.Resources.Raw.SalesPredictionData.json"))
+            using (var stream = executingAssembly.GetManifestResourceStream("AISalesDashboard.Resources.SalesPredictionData.json"))
             using (var textStream = new StreamReader(stream!))
             {
                 // Read the JSON content from the embedded resource
