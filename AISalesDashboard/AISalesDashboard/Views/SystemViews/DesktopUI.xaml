@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AISalesDashboard.DesktopUI"
+             xmlns:local="clr-namespace:AISalesDashboard"
+             xmlns:sfButton="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:imageExtension="clr-namespace:SampleBrowser.Maui.Base.Converters;assembly=SampleBrowser.Maui.Base"
+             xmlns:navigationdrawer="clr-namespace:Syncfusion.Maui.NavigationDrawer;assembly=Syncfusion.Maui.NavigationDrawer"
+             xmlns:aiassistview="clr-namespace:Syncfusion.Maui.AIAssistView;assembly=Syncfusion.Maui.AIAssistView"
+             x:DataType="local:SalesTrendsViewModel">
+
+    <ContentView.Resources>
+        <local:BoolToDarkThemeColorConverter x:Key="SelectionBackgroundConverter"/>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="8.5*,1.5*" ColumnDefinitions="1.4*,5.6*,3*">
+
+        <navigationdrawer:SfNavigationDrawer x:Name="navigationDrawer" Grid.RowSpan="2" Grid.ColumnSpan="3">
+            <navigationdrawer:SfNavigationDrawer.DrawerSettings>
+                <navigationdrawer:DrawerSettings DrawerWidth="250" DrawerHeaderHeight="160" DrawerFooterHeight="100" ContentBackground="{AppThemeBinding Light={StaticResource SalesDemoNavigationContentBackground}, Dark={StaticResource SalesDemoNavigationContentBackgroundDark}}">
+                    <navigationdrawer:DrawerSettings.DrawerContentView>
+                        <VerticalStackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                <Label Text="&#xef92;" FontSize="24" Margin="10,18,0,0" FontAttributes="Bold" FontFamily="MaterialSymbolOutlined" VerticalOptions="Center" HorizontalOptions="Center" TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}" WidthRequest="24" HeightRequest="30"/>
+                                <Label Text="Sales Dashboard" FontSize="16" Margin="10,20,0,0" FontAttributes="Bold" FontFamily="RobotoMedium" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <ListView x:Name="listView" x:DataType="local:SalesTrendsViewModel"
+                                      ItemsSource="{Binding Pages}" Margin="0,20,0,0" SelectedItem="{Binding SelectedPage, Mode=TwoWay}" ItemSelected="ListView_ItemSelected">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Border x:DataType="local:PageInfo" x:Name="item" BackgroundColor="{Binding IsSelected, Converter={StaticResource SelectionBackgroundConverter}}" StrokeShape="RoundRectangle 10" Stroke="Transparent" HeightRequest="{OnPlatform MacCatalyst=63}">
+                                                <HorizontalStackLayout Spacing="5" HorizontalOptions="Start" Padding="20">
+                                                    <Label Text="{Binding PageIcon}" FontFamily="MaterialSymbolOutlined" FontSize="27" TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}" VerticalOptions="{OnPlatform MacCatalyst=Center}"/>
+                                                    <Label Text="{Binding Title}"
+                                                           FontSize="14"
+                                                     VerticalOptions="Center" FontFamily="RobotoMedium" TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerTextColor}, Dark={StaticResource SalesDemoNavigationDrawerTextColorDark}}"/>
+                                                </HorizontalStackLayout>
+                                            </Border>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </VerticalStackLayout>
+                    </navigationdrawer:DrawerSettings.DrawerContentView>
+                    <navigationdrawer:DrawerSettings.DrawerFooterView>
+                        <Grid  Padding="20">
+                            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Spacing="10">
+                                <Label Text="Dark Theme" 
+                                       TextColor="{AppThemeBinding Light=black,Dark=white}"
+                                       VerticalOptions="Center" FontFamily="RobotoMedium" FontSize="14"
+                                       FontAttributes="Bold"/>
+                                <Switch x:Name="ThemeSwitch" ThumbColor="Red"
+                                         VerticalOptions="Center"
+                                         Toggled="OnThemeSwitchToggled"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </navigationdrawer:DrawerSettings.DrawerFooterView>
+                </navigationdrawer:DrawerSettings>
+
+            </navigationdrawer:SfNavigationDrawer.DrawerSettings>
+            <navigationdrawer:SfNavigationDrawer.ContentView>
+                <Grid RowDefinitions="0.7*,9.3*">
+                    <HorizontalStackLayout Background="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}"
+                                           Padding="10,0">
+
+                        <Path Data="M0,24L32,24 32,26 0,26z M0,16L32,16 32,18 0,18z M9.536746E-06,7.9999861L32.00001,7.9999861 32.00001,9.9999863 9.536746E-06,9.9999863z M0,0L32,0 32,2 0,2z"
+                              Fill="{AppThemeBinding Light={StaticResource SalesDemoAssistViewHeaderTextColor}, Dark={StaticResource SalesDemoAssistViewHeaderTextColorDark}}" Width="24" Height="24" VerticalOptions="Center" HorizontalOptions="Center"
+                              Background="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}">
+                            <Path.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                            </Path.GestureRecognizers>
+                        </Path>
+
+                        <Label x:Name="headerLabel"
+                               HeightRequest="50"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               Text="Home"
+                               FontSize="16"
+                               Margin="10,0,0,0"
+                               FontFamily="RobotoMedium"
+                               TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}" />
+                    </HorizontalStackLayout>
+                    <ContentView x:Name="main" Grid.Row="1" />
+                </Grid>
+            </navigationdrawer:SfNavigationDrawer.ContentView>
+        </navigationdrawer:SfNavigationDrawer>
+
+        <Border x:Name="assistViewBorder"
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="2"
+                StrokeShape="RoundRectangle 10"
+                IsVisible="False"
+                Margin="{OnPlatform Default='0,70,50,115', MacCatalyst='0,120,100,170'}">
+            <Border.Shadow>
+                <Shadow Brush="#1F000000" Offset="0,1" Radius="5" Opacity="1" />
+            </Border.Shadow>
+            <Grid RowDefinitions="1.2*,8.8*">
+                <Grid x:Name="assistViewHeader"
+                      Grid.Row="0"
+                      ColumnDefinitions="1.2*,8.8*"
+                      Background="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}"
+                      IsVisible="False"
+                      Padding="10"
+                      ColumnSpacing="5">
+                    <Border Background="{AppThemeBinding Light={StaticResource SalesDemoAssistViewIconBackground}, Dark={StaticResource SalesDemoAssistViewIconBackgroundDark}}"
+                            Stroke="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}"
+                            StrokeShape="{OnPlatform Default='RoundRectangle 40', MacCatalyst='RoundRectangle 50'}"
+                            HeightRequest="{OnPlatform MacCatalyst=50, Default=40}"
+                            WidthRequest="{OnPlatform MacCatalyst=50, Default=40}">
+                        <Image Source="{AppThemeBinding Light={imageExtension:SfImageResource aiicon.png}, Dark={imageExtension:SfImageResource ai_icon_dark_win.png}}"
+                               HeightRequest="{OnPlatform MacCatalyst=20, Default=15}"
+                               WidthRequest="{OnPlatform MacCatalyst=20, Default=15}" />
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Assistant"
+                               FontSize="{OnPlatform MacCatalyst=16, Default=14}"
+                               FontFamily="Roboto"
+                               TextColor="{AppThemeBinding Light={StaticResource SalesDemoAssistViewHeaderTextColor}, Dark={StaticResource SalesDemoAssistViewHeaderTextColorDark}}" />
+                        <Label Text="How may I help you?"
+                               FontSize="{OnPlatform MacCatalyst=16, Default=14}"
+                               FontFamily="Roboto"
+                               TextColor="{AppThemeBinding Light={StaticResource SalesDemoAssistViewHeaderTextColor}, Dark={StaticResource SalesDemoAssistViewHeaderTextColorDark}}" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <ScrollView Grid.Row="1">
+                    <aiassistview:SfAIAssistView x:Name="aiAssistView"
+                                                 IsVisible="{Binding ShowAssistView}"
+                                                 HorizontalOptions="Fill"
+                                                 Request="AiAssistView_Request"
+                                                 ShowHeader="True"
+                                                 AssistItems="{Binding Messages}"
+                                                 Suggestions="{Binding Suggestions}">
+
+                        <aiassistview:SfAIAssistView.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid Padding="5">
+                                    <Label Text="Here are some prompt suggestions"
+                                           LineHeight="1.43"
+                                           CharacterSpacing="0.1"
+                                           FontFamily="RobotoMedium"
+                                           TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}"
+                                           FontSize="14"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </aiassistview:SfAIAssistView.HeaderTemplate>
+
+                        <aiassistview:SfAIAssistView.SuggestionTemplate>
+                            <DataTemplate x:DataType="aiassistview:AssistSuggestion">
+                                <Border HeightRequest="40"
+                                        BackgroundColor="{AppThemeBinding Light={StaticResource SalesDemoMainContentBackground}, Dark={StaticResource SalesDemoMainContentBackgroundDark}}"
+                                        Stroke="Transparent"
+                                        Margin="0,0,0,5"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="12,8,12,0">
+                                    <Border.Shadow>
+                                        <Shadow Brush="#26000000" Offset="0,2" Radius="1.5" Opacity="1" />
+                                    </Border.Shadow>
+                                    <Label Text="{Binding Text}"
+                                           FontSize="16"
+                                           TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}"
+                                           LineHeight="1.5"
+                                           CharacterSpacing="0.15"
+                                           HeightRequest="24"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </aiassistview:SfAIAssistView.SuggestionTemplate>
+
+                        <aiassistview:SfAIAssistView.Shadow>
+                            <Shadow Brush="{AppThemeBinding Light={StaticResource SalesDemoAssistViewShadowColor}, Dark={StaticResource SalesDemoAssistViewShadowColorDark}}"
+                                    Opacity="0.5"
+                                    Offset="4,4"
+                                    Radius="5" />
+                        </aiassistview:SfAIAssistView.Shadow>
+
+                    </aiassistview:SfAIAssistView>
+                </ScrollView>
+            </Grid>
+        </Border>
+
+        <sfButton:SfButton x:Name="clickToShowPopup"
+                           Grid.Row="2"
+                           Grid.Column="2"
+                           ShowIcon="True"
+                           Background="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}"
+                           WidthRequest="60"
+                           CornerRadius="60"
+                           ImageSize="20"
+                           HorizontalOptions="End"
+                           ImageAlignment="Default"
+                           ImageSource="{AppThemeBinding Light={imageExtension:SfImageResource ai_icon.png}, Dark={imageExtension:SfImageResource aiicon.png}}"
+                           HeightRequest="60"
+                           Clicked="ClickToShowPopup_Clicked"
+                           Margin="{OnPlatform Default='0,0,40,40', MacCatalyst='0,0,80,40'}" />
+
+        <sfButton:SfButton x:Name="close"
+                           Grid.Row="2"
+                           Grid.Column="2"
+                           ShowIcon="True"
+                           Background="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}"
+                           HorizontalOptions="End"
+                           Text="&#xe5cd;"
+                           FontSize="30"
+                           TextColor="{AppThemeBinding Light={StaticResource SalesDemoAssistViewHeaderTextColor}, Dark={StaticResource SalesDemoAssistViewHeaderTextColorDark}}"
+                           FontFamily="MaterialIcons"
+                           WidthRequest="60"
+                           CornerRadius="60"
+                           HeightRequest="60"
+                           Clicked="Close_Clicked"
+                           IsVisible="False"
+                           Margin="{OnPlatform Default='0,0,40,40', MacCatalyst='0,0,80,40'}" />
+
+    </Grid>
+
+</ContentView>

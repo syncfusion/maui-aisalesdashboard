@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AISalesDashboard"
+             x:Class="AISalesDashboard.HomeAndroid">
+
+    <ScrollView x:DataType="local:SalesTrendsViewModel" Background="{AppThemeBinding Light={StaticResource SalesDemoMainContentBackground}, Dark={StaticResource SalesDemoMainContentBackgroundDark}}" Padding="12">
+
+        <Grid RowDefinitions="1*,2*,1*,1*,5*" RowSpacing="12">
+
+            <CollectionView Grid.Row="0" ItemsSource="{Binding HomePageCardLabels}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="12" VerticalItemSpacing="12"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <local:CustomBorder HeightRequest="64">
+                            <HorizontalStackLayout Spacing="4" x:DataType="local:DashboardLabelCardModel">
+                                <Border StrokeShape="RoundRectangle 8" BackgroundColor="{Binding Background}" Stroke="Transparent" WidthRequest="{OnPlatform Default=48, Android=32, iOS=32}" HeightRequest="{OnPlatform Default=48, Android=32, iOS=32}" Margin="12,16,0,16">
+                                    <Label Text="{Binding Icon}" TextColor="{Binding IconColor}" FontSize="{OnPlatform Default=30, Android=15, iOS=15}" FontFamily="MaterialSymbolOutlined" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                </Border>
+                                <VerticalStackLayout Spacing="4" Margin="0,12,24,12">
+                                    <Label Text="{Binding Title}" FontSize="12" FontFamily="RobotoMedium"
+                                            TextColor="{AppThemeBinding Light={StaticResource SalesDemoHeaderLabelTextColor}, Dark={StaticResource SalesDemoHeaderLabelTextColorDark}}" LineHeight="1.33" CharacterSpacing="0.5" HeightRequest="16"/>
+                                    <Label Text="{Binding Value}" FontSize="14" FontFamily="RobotoMedium" TextColor="{Binding ValueColor}" LineHeight="1.43" CharacterSpacing="0.1" HeightRequest="24"/>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </local:CustomBorder>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <local:CustomBorder Grid.Row="1" Margin="{OnPlatform iOS='0,-45,0,0'}">
+                <local:CustomBorder.Content>
+                    <local:RevenueTrendChart/>
+                </local:CustomBorder.Content>
+            </local:CustomBorder>
+
+            <local:CustomBorder Grid.Row="2">
+                <local:CustomBorder.Content>
+                    <local:QuantityChart/>
+                </local:CustomBorder.Content>
+            </local:CustomBorder>
+
+            <local:CustomBorder Grid.Row="3">
+                <local:CustomBorder.Content>
+                    <local:ProfitMarginChart/>
+                </local:CustomBorder.Content>
+            </local:CustomBorder>
+
+            <local:CustomBorder Grid.Row="4">
+                <local:CustomBorder.Content>
+                    <local:SalesDataGrid/>
+                </local:CustomBorder.Content>
+            </local:CustomBorder>
+
+        </Grid>
+
+    </ScrollView>
+
+</ContentView>
+

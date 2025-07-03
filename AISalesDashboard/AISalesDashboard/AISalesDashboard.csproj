@@ -1,0 +1,256 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net9.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>AISalesDashboard</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>AISalesDashboard</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.aisalesdashboard</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
+		<WindowsPackageType>None</WindowsPackageType>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+
+		<EmbeddedResource Include="Resources\SalesPredictionData.json" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Azure.AI.OpenAI" Version="2.1.0" />
+		<PackageReference Include="Azure.Identity" Version="1.13.2" />
+		<PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.0.1-preview.1.24570.5" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="SampleBrowser.Maui.Base" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.AIAssistView" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.Buttons" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.Calendar" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.Chat" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.DataGridExport" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.Gauges" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.Maps" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.NavigationDrawer" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.Picker" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.PullToRefresh" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="*" />
+		<PackageReference Include="Syncfusion.Pdf.NET" Version="*" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Compile Update="Views\CustomViews\AIInsightsDetails.xaml.cs">
+			<DependentUpon>AIInsightsDetails.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\AverageConfidence.xaml.cs">
+			<DependentUpon>AverageConfidence.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\CustomBorder.xaml.cs">
+			<DependentUpon>CustomBorder.xaml</DependentUpon>
+		</Compile>
+	    <Compile Update="Views\CustomViews\OrderList.xaml.cs">
+			<DependentUpon>OrderList.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\PredictionDetails.xaml.cs">
+			<DependentUpon>PredictionDetails.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\PredictionPeriod.xaml.cs">
+			<DependentUpon>PredictionPeriod.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\PredictionRevenue.xaml.cs">
+			<DependentUpon>PredictionRevenue.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\ProductChart.xaml.cs">
+			<DependentUpon>ProductChart.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\ProductList.xaml.cs">
+			<DependentUpon>ProductList.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\ProductSalesRegion.xaml.cs">
+			<DependentUpon>ProductSalesRegion.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\ProfitMarginChart.xaml.cs">
+			<DependentUpon>ProfitMarginChart.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\QuantityChart.xaml.cs">
+			<DependentUpon>QuantityChart.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\RevenueTrendChart.xaml.cs">
+			<DependentUpon>RevenueTrendChart.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CustomViews\SalesDataGrid.xaml.cs">
+			<DependentUpon>SalesDataGrid.xaml</DependentUpon>
+		</Compile>
+
+		<Compile Update="Views\MainView\AISalesDemo.xaml.cs">
+			<DependentUpon>AISalesDemo.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\MainView\SplashScreenView.xaml.cs">
+			<DependentUpon>SplashScreenView.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\MobileViews\AndroidUI.xaml.cs">
+			<DependentUpon>AndroidUI.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\MobileViews\HomeAndroid.xaml.cs">
+			<DependentUpon>HomeAndroid.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\MobileViews\OrderDetailsAndroid.xaml.cs">
+			<DependentUpon>OrderDetailsAndroid.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\MobileViews\PredictionAndroid.xaml.cs">
+			<DependentUpon>PredictionAndroid.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\MobileViews\ProductDetailsAndroid.xaml.cs">
+			<DependentUpon>ProductDetailsAndroid.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\SystemViews\DesktopUI.xaml.cs">
+			<DependentUpon>DesktopUI.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\SystemViews\OrderDetails.xaml.cs">
+			<DependentUpon>OrderDetails.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\SystemViews\Prediction.xaml.cs">
+			<DependentUpon>Prediction.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\SystemViews\ProductDetails.xaml.cs">
+			<DependentUpon>ProductDetails.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\SystemViews\SalesChart.xaml.cs">
+			<DependentUpon>SalesChart.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\CustomViews\AIInsightsDetails.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CustomViews\AverageConfidence.xaml">
+		<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CustomViews\CustomBorder.xaml">
+		 <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CustomViews\OrderList.xaml">
+		 <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CustomViews\PredictionDetails.xaml">
+		 <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CustomViews\PredictionPeriod.xaml">
+		 <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+		<MauiXaml Update="Views\CustomViews\PredictionRevenue.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CustomViews\ProductChart.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CustomViews\ProductList.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CustomViews\ProductSalesRegion.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CustomViews\ProfitMarginChart.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CustomViews\QuantityChart.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CustomViews\RevenueTrendChart.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CustomViews\SalesDataGrid.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MainView\AISalesDemo.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MainView\SplashScreenView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MobileViews\AndroidUI.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MobileViews\HomeAndroid.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MobileViews\OrderDetailsAndroid.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MobileViews\PredictionAndroid.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\MobileViews\ProductDetailsAndroid.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SystemViews\DesktopUI.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SystemViews\OrderDetails.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SystemViews\Prediction.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SystemViews\ProductDetails.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SystemViews\SalesChart.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+	</ItemGroup>
+
+</Project>

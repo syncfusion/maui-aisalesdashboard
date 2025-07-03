@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AISalesDashboard.AndroidUI"
+             xmlns:local="clr-namespace:AISalesDashboard"
+             xmlns:imageExtension="clr-namespace:SampleBrowser.Maui.Base.Converters;assembly=SampleBrowser.Maui.Base"
+             xmlns:tabView="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+             xmlns:sfButton="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:aiassistview="clr-namespace:Syncfusion.Maui.AIAssistView;assembly=Syncfusion.Maui.AIAssistView"
+             x:DataType="local:SalesTrendsViewModel">
+
+    <Grid RowDefinitions="8*,1*,1*" ColumnDefinitions="7*,3*">
+
+        <ContentView x:Name="mainContentView" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="True">
+            <!-- Content for this view should be added here -->
+        </ContentView>
+      
+        <ContentView x:Name="assistviewContent" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
+            <Grid RowDefinitions="1*,9*">
+
+                <Grid Grid.Row="0" ColumnDefinitions="1*,1*,8*" Background="{AppThemeBinding Light={StaticResource SalesDemoTabViewBackgroundColor}, Dark={StaticResource SalesDemoTabViewBackgroundColorDark}}" x:Name="assistViewHeader"
+                Padding="10" ColumnSpacing="20">
+                    <sfButton:SfButton Text="&#xf1e6;" TextColor="{AppThemeBinding Light={StaticResource SalesDemoAssistViewHeaderTextColor}, Dark={StaticResource SalesDemoAssistViewHeaderTextColorDark}}" FontFamily="MaterialIcons" FontSize="27" WidthRequest="70" HeightRequest="40" ShowIcon="True" Grid.Column="0" Clicked="SfButton_Clicked" Background="{AppThemeBinding Dark={StaticResource SalesDemoBackArrowButtonBackgroundDark}}" Margin="20,0,0,0"/>
+                    <Border Background="{AppThemeBinding Light={StaticResource SalesDemoAssistViewIconBackground}, Dark={StaticResource SalesDemoAssistViewIconBackgroundDark}}" Stroke="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}" StrokeShape="RoundRectangle 45" Grid.Column="1" WidthRequest="50" HeightRequest="50">
+                        <Image Source="{AppThemeBinding Light={imageExtension:SfImageResource aiicon.png}, Dark={imageExtension:SfImageResource ai_icon_dark_win.png}}" WidthRequest="20" HeightRequest="20"/>
+                    </Border>
+                    <VerticalStackLayout Grid.Column="2" VerticalOptions="Center">
+                        <Label Text="Assistant" TextColor="{AppThemeBinding Light={StaticResource SalesDemoAssistViewHeaderTextColor}, Dark={StaticResource SalesDemoAssistViewHeaderTextColorDark}}"
+                        FontSize="14" FontFamily="RobotoMedium"/>
+                        <Label Text="How may I help you?" TextColor="{AppThemeBinding Light={StaticResource SalesDemoAssistViewHeaderTextColor}, Dark={StaticResource SalesDemoAssistViewHeaderTextColorDark}}"
+                    FontSize="14" FontFamily="RobotoMedium"/>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <ScrollView Grid.Row="1">
+                    <aiassistview:SfAIAssistView IsVisible="{Binding ShowAssistView}"
+                        x:Name="aiAssistView" HorizontalOptions="Fill" Request ="AiAssistView_Request" AssistItems="{Binding Messages}" ShowHeader="True" Suggestions="{Binding Suggestions}">
+
+                        <aiassistview:SfAIAssistView.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid Padding="5">
+                                    <Label Text="Here some of prompt suggestions" LineHeight="1.43" CharacterSpacing="0.1" FontFamily="RobotoMedium"
+                                            TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}" 
+                                            FontSize="14" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </aiassistview:SfAIAssistView.HeaderTemplate>
+
+                        <aiassistview:SfAIAssistView.SuggestionTemplate>
+                            <DataTemplate x:DataType="aiassistview:AssistSuggestion">
+                                <Border HeightRequest="40" 
+                                        BackgroundColor="{AppThemeBinding Light={StaticResource SalesDemoMainContentBackground}, Dark={StaticResource SalesDemoMainContentBackgroundDark}}"
+                                        Stroke="Transparent" Margin="0,0,0,5"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="12,0,12,0">
+                                    <Border.Shadow>
+                                        <Shadow Brush="#26000000" Offset="0,2" Radius="1.5" Opacity="1"/>
+                                    </Border.Shadow>
+                                    <Label Text="{Binding Text}" 
+                                        FontSize="16" 
+                                        TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}"
+                                        LineHeight="1.5"     
+                                        CharacterSpacing="0.15" HeightRequest="24"
+                                        HorizontalTextAlignment="Center"
+                                        HorizontalOptions="Center"/>
+                                </Border>
+                            </DataTemplate>
+                        </aiassistview:SfAIAssistView.SuggestionTemplate>
+                    </aiassistview:SfAIAssistView>
+                </ScrollView>
+
+            </Grid>
+        </ContentView>
+
+        <sfButton:SfButton Grid.Row="1" Grid.Column="2" x:Name="clickToShowPopup" ShowIcon="True" Background="{AppThemeBinding Light={StaticResource SalesDemoTabViewBackgroundColor}, Dark={StaticResource SalesDemoTabViewBackgroundColorDark}}" WidthRequest="50" CornerRadius="50"
+            ImageSize="20" HorizontalOptions="End" ImageAlignment="Default" ImageSource="{AppThemeBinding Light={imageExtension:SfImageResource ai_icon.png}, Dark={imageExtension:SfImageResource aiicon.png}}" HeightRequest="50"
+            Clicked="ClickToShowPopup_Clicked" Margin="0,0,20,100" IsVisible="True">
+        </sfButton:SfButton>
+  
+        <!-- Custom Tab Bar -->
+        <Grid  x:Name="menuBar" IsVisible="True" Grid.Row="2" 
+               BackgroundColor="{AppThemeBinding Light={StaticResource SalesDemoTabViewBackgroundColor}, Dark={StaticResource SalesDemoTabViewBackgroundColorDark}}"
+               Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+               <Border x:Name="homeBorder" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Background="{AppThemeBinding Light='#F6EDFF', Dark='#381E72'}"  StrokeThickness="0" WidthRequest="50" HeightRequest="50">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <Label x:Name="homeIcon" Text="&#xe88a;" FontFamily="MaterialSymbolOutlined" FontSize="25" VerticalTextAlignment="Center" 
+                       TextColor="{AppThemeBinding Light='#6750A4', Dark='#D0BCFF'}" HorizontalOptions="Center" />
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHomeTapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <Border x:Name="productBorder" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Background="Transparent" StrokeThickness="0" WidthRequest="50" HeightRequest="50">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <Label x:Name="productIcon" Text="&#xf569;" FontFamily="MaterialSymbolOutlined" FontSize="25" VerticalTextAlignment="Center" 
+                           TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}" HorizontalOptions="Center" />
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBoxTapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <Border x:Name="cartBorder" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Background="Transparent" StrokeThickness="0" WidthRequest="50" HeightRequest="50">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <Label x:Name="cartIcon" Text="&#xe8cc;" FontFamily="MaterialSymbolOutlined" FontSize="25" VerticalTextAlignment="Center"
+                           TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}" HorizontalOptions="Center" />
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCartTapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <Border x:Name="chartBorder" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Background="Transparent" StrokeThickness="0" WidthRequest="50" HeightRequest="50">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <Label x:Name="chartIcon" Text="&#xe26b;" FontFamily="MaterialSymbolOutlined" FontSize="25" VerticalTextAlignment="Center" 
+                           TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}" HorizontalOptions="Center" />
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAnalyticsTapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+            </Grid>
+        </Grid>
+
+</ContentView>
