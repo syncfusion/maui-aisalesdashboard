@@ -70,7 +70,7 @@
                 </Border>
             </HorizontalStackLayout>
 
-            <buttons:SfButton x:Name="customComboBox" Grid.Column="2" Text="&#xe5d4;" FontFamily="MaterialSymbolOutlined" FontSize="30" IsVisible="{OnPlatform WinUI=False, MacCatalyst=False}" Clicked="OnSfButtonClicked" Background="Transparent" TextColor="{AppThemeBinding Light={StaticResource SalesDemoComboBoxDropDownIcon}, Dark={StaticResource SalesDemoComboBoxDropDownIconDark}}" CornerRadius="70" HeightRequest="50" WidthRequest="50"/>
+            <buttons:SfButton x:Name="customComboBox" Grid.Column="2" Text="&#xe732;" FontFamily="MauiSampleFontIcon" FontSize="30" IsVisible="{OnPlatform WinUI=False, MacCatalyst=False}" Clicked="OnSfButtonClicked" Background="Transparent" TextColor="{AppThemeBinding Light={StaticResource SalesDemoComboBoxDropDownIcon}, Dark={StaticResource SalesDemoComboBoxDropDownIconDark}}" CornerRadius="70" HeightRequest="50" WidthRequest="50"/>
         </Grid>
 
         <!-- Data Grid -->
@@ -144,13 +144,13 @@
 
         <!-- Pagination Controls -->
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="20" Margin="10" Grid.Row="2">
-            <Button Text="&#xe5e0;" FontFamily="MaterialIcons" Command="{Binding PreviousProductPageCommand}" TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}"  IsEnabled="{Binding HasPreviousProductPage}"
+            <Button Text="&#xe70a;" FontFamily="MauiSampleFontIcon" Command="{Binding PreviousProductPageCommand}" TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}"  IsEnabled="{Binding HasPreviousProductPage}"
                     Background="{Binding HasPreviousProductPage, Converter={StaticResource colorConverter}}"
-                    CornerRadius="10"/>
+                    CornerRadius="10" FontSize="18"/>
             <Label Text="{Binding ProductPageInfo}" VerticalOptions="Center" Style="{StaticResource labelStyle}"/>
-            <Button Text="&#xe5e1;" FontFamily="MaterialIcons" Command="{Binding NextProductPageCommand}" TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}"  IsEnabled="{Binding HasNextProductPage}"
+            <Button Text="&#xe709;" FontFamily="MauiSampleFontIcon" Command="{Binding NextProductPageCommand}" TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}"  IsEnabled="{Binding HasNextProductPage}"
                     Background="{Binding HasNextProductPage, Converter={StaticResource colorConverter}}"
-                    CornerRadius="10"/>
+                    CornerRadius="10" FontSize="18"/>
         </HorizontalStackLayout>
     </Grid>
 </ContentView>

@@ -128,17 +128,17 @@
             </dataGrid:SfDataGrid>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="20" Margin="{OnPlatform WinUI=10,MacCatalyst='0,0,0,10'}">
-                <Button Text="&#xe5e0;" FontFamily="MaterialIcons" Command="{Binding PreviousPageCommand}" 
+                <Button Text="&#xe70a;" FontFamily="MauiSampleFontIcon" Command="{Binding PreviousPageCommand}" 
                         TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}" 
                         IsEnabled="{Binding HasPreviousPage}"
                         Background="{Binding HasPreviousPage, Converter={StaticResource colorConverter}}"
-                        CornerRadius="10"/>
+                        CornerRadius="10" FontSize="18"/>
                 <Label Text="{Binding PredictionPageInfo}" VerticalOptions="Center"/>
-                <Button Text="&#xe5e1;" FontFamily="MaterialIcons" Command="{Binding NextPageCommand}" 
+                <Button Text="&#xe709;" FontFamily="MauiSampleFontIcon" Command="{Binding NextPageCommand}" 
                         TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}" 
                         IsEnabled="{Binding HasNextPage}"
                         Background="{Binding HasNextPage, Converter={StaticResource colorConverter}}"
-                        CornerRadius="10"/>
+                        CornerRadius="10" FontSize="18"/>
             </HorizontalStackLayout>
 
         </VerticalStackLayout>

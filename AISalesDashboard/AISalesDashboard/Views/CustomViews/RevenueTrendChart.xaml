@@ -22,7 +22,7 @@
                     WidthRequest="{OnPlatform MacCatalyst=180, Default=160}" HeightRequest="{OnPlatform Android=40, iOS=40, Default=32}"
                     Margin="{OnPlatform Default='0,16,20,0', Android='0,12,12,0', iOS='0,12,12,0'}" HorizontalOptions="End">
                 <HorizontalStackLayout Margin="{OnPlatform Default='10,-10,5,0', Android='10,-5,0,0', iOS='10,-5,0,0', MacCatalyst='10,-20,0,0'}">
-                    <Label Text="&#xebcc;" FontSize="17" FontFamily="MaterialIcons" TextColor="{AppThemeBinding Light={StaticResource SalesDemoHeaderLabelTextColor}, Dark={StaticResource SalesDemoHeaderLabelTextColorDark}}"
+                    <Label Text="&#xe757;" FontSize="17" FontFamily="MauiSampleFontIcon" TextColor="{AppThemeBinding Light={StaticResource SalesDemoHeaderLabelTextColor}, Dark={StaticResource SalesDemoHeaderLabelTextColorDark}}"
                            VerticalOptions="Center" Margin="{OnPlatform Default='0,17,0,0', Android='0,7,0,0', iOS='0'}"
                            LineHeight="1.5" CharacterSpacing="0.15" HeightRequest="24"/>
                     <comboBox:SfComboBox Margin="{OnPlatform Default='0,10,0,0', Android='0,7,10,0', MacCatalyst='0,5,0,-15'}"

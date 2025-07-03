@@ -68,21 +68,21 @@
         </dataGrid:SfDataGrid>
 
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="20" Margin="10">
-            <Button Text="&#xe5e0;"
-                    FontFamily="MaterialIcons"
+            <Button Text="&#xe70a;"
+                    FontFamily="MauiSampleFontIcon"
                     Command="{Binding PreviousSalesPageCommand}"
                     IsEnabled="{Binding HasPreviousPage}"
                     Background="{Binding HasPreviousPage, Converter={StaticResource colorConverter}}"
                     TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}"
-                    CornerRadius="10"/>
+                    CornerRadius="10" FontSize="18"/>
             <Label Text="{Binding SalesPageInfo}" VerticalOptions="Center"/>
-            <Button Text="&#xe5e1;"
-                    FontFamily="MaterialIcons"
+            <Button Text="&#xe709;"
+                    FontFamily="MauiSampleFontIcon"
                     Command="{Binding NextSalesPageCommand}"
                     IsEnabled="{Binding HasNextPage}"
                     Background="{Binding HasNextPage, Converter={StaticResource colorConverter}}"
                     TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}"
-                    CornerRadius="10"/>
+                    CornerRadius="10" FontSize="18"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentView>

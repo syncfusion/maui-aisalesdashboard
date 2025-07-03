@@ -20,7 +20,7 @@ public partial class PredictionDetails : ContentView
     {
         segmentedControl.ItemsSource = new List<SfSegmentItem>
         {
-            new SfSegmentItem { Text = "\ue26b", TextStyle = new SegmentTextStyle { FontFamily = "MaterialSymbolOutlined", FontSize = 16 } },
+            new SfSegmentItem { Text = "\ue820", TextStyle = new SegmentTextStyle { FontFamily = "MauiSampleFontIcon", FontSize = 16 } },
             new SfSegmentItem { Text = "\ue9b0", TextStyle = new SegmentTextStyle { FontFamily = "MaterialSymbolOutlined", FontSize = 16 } }
         };
     }
