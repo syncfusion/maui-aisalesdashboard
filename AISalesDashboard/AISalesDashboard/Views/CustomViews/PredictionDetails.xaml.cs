@@ -1,5 +1,6 @@
 using Syncfusion.Maui.Buttons;
 using Syncfusion.Maui.Charts;
+using Syncfusion.Maui.Themes;
 
 namespace AISalesDashboard;
 
@@ -18,10 +19,15 @@ public partial class PredictionDetails : ContentView
 
     private void InitializeSegmentedControl()
     {
+
+        var selectedColor = (Color)(Application.Current!.RequestedTheme == AppTheme.Dark
+                            ? Application.Current.Resources["SalesDemoContentLabelTextColorDark"]
+                            : Application.Current.Resources["SalesDemoContentLabelTextColor"]);
+
         segmentedControl.ItemsSource = new List<SfSegmentItem>
         {
-            new SfSegmentItem { Text = "\ue26b", TextStyle = new SegmentTextStyle { FontFamily = "MaterialSymbolOutlined", FontSize = 16 } },
-            new SfSegmentItem { Text = "\ue9b0", TextStyle = new SegmentTextStyle { FontFamily = "MaterialSymbolOutlined", FontSize = 16 } }
+            new SfSegmentItem { Text = "\ue820", TextStyle = new SegmentTextStyle { FontFamily = "MauiSampleFontIcon", FontSize = 16 , TextColor = selectedColor} },
+            new SfSegmentItem { Text = "\ue829", TextStyle = new SegmentTextStyle { FontFamily = "MauiSampleFontIcon", FontSize = 16 , TextColor = selectedColor} }
         };
     }
 

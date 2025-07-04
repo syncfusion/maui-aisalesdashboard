@@ -20,7 +20,7 @@
 
                 <Grid Grid.Row="0" ColumnDefinitions="1*,1*,8*" Background="{AppThemeBinding Light={StaticResource SalesDemoTabViewBackgroundColor}, Dark={StaticResource SalesDemoTabViewBackgroundColorDark}}" x:Name="assistViewHeader"
                 Padding="10" ColumnSpacing="20">
-                    <sfButton:SfButton Text="&#xf1e6;" TextColor="{AppThemeBinding Light={StaticResource SalesDemoAssistViewHeaderTextColor}, Dark={StaticResource SalesDemoAssistViewHeaderTextColorDark}}" FontFamily="MaterialIcons" FontSize="27" WidthRequest="70" HeightRequest="40" ShowIcon="True" Grid.Column="0" Clicked="SfButton_Clicked" Background="{AppThemeBinding Dark={StaticResource SalesDemoBackArrowButtonBackgroundDark}}" Margin="20,0,0,0"/>
+                    <sfButton:SfButton Text="&#xe70e;" TextColor="{AppThemeBinding Light={StaticResource SalesDemoAssistViewHeaderTextColor}, Dark={StaticResource SalesDemoAssistViewHeaderTextColorDark}}" FontFamily="MauiSampleFontIcon" FontSize="27" WidthRequest="70" HeightRequest="40" ShowIcon="True" Grid.Column="0" Clicked="SfButton_Clicked" Background="{AppThemeBinding Dark={StaticResource SalesDemoBackArrowButtonBackgroundDark}}" Margin="20,0,0,0"/>
                     <Border Background="{AppThemeBinding Light={StaticResource SalesDemoAssistViewIconBackground}, Dark={StaticResource SalesDemoAssistViewIconBackgroundDark}}" Stroke="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}" StrokeShape="RoundRectangle 45" Grid.Column="1" WidthRequest="50" HeightRequest="50">
                         <Image Source="{AppThemeBinding Light={imageExtension:SfImageResource aiicon.png}, Dark={imageExtension:SfImageResource ai_icon_dark_win.png}}" WidthRequest="20" HeightRequest="20"/>
                     </Border>
@@ -92,8 +92,8 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10"/>
                     </Border.StrokeShape>
-                    <Label x:Name="homeIcon" Text="&#xe88a;" FontFamily="MaterialSymbolOutlined" FontSize="25" VerticalTextAlignment="Center" 
-                       TextColor="{AppThemeBinding Light='#6750A4', Dark='#D0BCFF'}" HorizontalOptions="Center" />
+                    <Label x:Name="homeIcon" Text="&#xe738;" FontFamily="MauiSampleFontIcon" FontSize="30" VerticalTextAlignment="Center" 
+                           TextColor="{AppThemeBinding Light='#6750A4', Dark='#D0BCFF'}" HorizontalOptions="Center" />
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnHomeTapped" />
                     </Border.GestureRecognizers>
@@ -103,7 +103,7 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10"/>
                     </Border.StrokeShape>
-                    <Label x:Name="productIcon" Text="&#xf569;" FontFamily="MaterialSymbolOutlined" FontSize="25" VerticalTextAlignment="Center" 
+                    <Label x:Name="productIcon" Text="&#xe82a;" FontFamily="MauiSampleFontIcon" FontSize="25" VerticalTextAlignment="Center" 
                            TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}" HorizontalOptions="Center" />
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnBoxTapped" />
@@ -114,7 +114,7 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10"/>
                     </Border.StrokeShape>
-                    <Label x:Name="cartIcon" Text="&#xe8cc;" FontFamily="MaterialSymbolOutlined" FontSize="25" VerticalTextAlignment="Center"
+                    <Label x:Name="cartIcon" Text="&#xe73e;" FontFamily="MauiSampleFontIcon" FontSize="25" VerticalTextAlignment="Center"
                            TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}" HorizontalOptions="Center" />
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnCartTapped" />
@@ -125,7 +125,7 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10"/>
                     </Border.StrokeShape>
-                    <Label x:Name="chartIcon" Text="&#xe26b;" FontFamily="MaterialSymbolOutlined" FontSize="25" VerticalTextAlignment="Center" 
+                    <Label x:Name="chartIcon" Text="&#xe820;" FontFamily="MauiSampleFontIcon" FontSize="25" VerticalTextAlignment="Center" 
                            TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}" HorizontalOptions="Center" />
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnAnalyticsTapped" />

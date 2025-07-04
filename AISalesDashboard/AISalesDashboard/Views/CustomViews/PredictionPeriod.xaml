@@ -7,7 +7,7 @@
 
     <Grid ColumnDefinitions="{OnPlatform WinUI='1.5*, 8.5*', MacCatalyst='1.5*, 8.5*'}" ColumnSpacing="{OnPlatform WinUI=12, MacCatalyst=12}">
         <Border Background="#FFDAEC" StrokeShape="RoundRectangle 8" Stroke="Transparent" WidthRequest="56" HeightRequest="56" IsVisible="{OnPlatform Android=False, iOS=False}">
-            <Label Text="&#xe916;" FontSize="32" FontFamily="MaterialIcons" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#E2227E"/>
+            <Label Text="&#xe757;" FontSize="32" FontFamily="MauiSampleFontIcon" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#E2227E"/>
         </Border>
         <VerticalStackLayout Spacing="4" Grid.Column="{OnPlatform WinUI=1, MacCatalyst=1}" VerticalOptions="{OnPlatform Default=Center, Android=Start, iOS=Start}" Margin="{OnPlatform Android=12, iOS=12}">
             <Label Text="Prediction Period" FontSize="{OnPlatform Default=16, Android=12, iOS=12}" FontFamily="RobotoMedium" TextColor="{AppThemeBinding Light={StaticResource SalesDemoHeaderLabelTextColor}, Dark={StaticResource SalesDemoHeaderLabelTextColorDark}}" LineHeight="{OnPlatform Default=1.5, Android=1.33, iOS=1.33}" CharacterSpacing="{OnPlatform Default=0.15, Android=0.5, iOS=0.5}" HeightRequest="{OnPlatform Default=24, Android=16, iOS=16}"/>

@@ -21,7 +21,7 @@
                     <navigationdrawer:DrawerSettings.DrawerContentView>
                         <VerticalStackLayout>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
-                                <Label Text="&#xef92;" FontSize="24" Margin="10,18,0,0" FontAttributes="Bold" FontFamily="MaterialSymbolOutlined" VerticalOptions="Center" HorizontalOptions="Center" TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}" WidthRequest="24" HeightRequest="30"/>
+                                <Label Text="&#xe82b;" FontSize="24" Margin="10,18,0,0" FontAttributes="Bold" FontFamily="MauiSampleFontIcon" VerticalOptions="Center" HorizontalOptions="Center" TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}" WidthRequest="24" HeightRequest="30"/>
                                 <Label Text="Sales Dashboard" FontSize="16" Margin="10,20,0,0" FontAttributes="Bold" FontFamily="RobotoMedium" VerticalOptions="Center" HorizontalOptions="Center"/>
                             </StackLayout>
                             <ListView x:Name="listView" x:DataType="local:SalesTrendsViewModel"
@@ -31,7 +31,7 @@
                                         <ViewCell>
                                             <Border x:DataType="local:PageInfo" x:Name="item" BackgroundColor="{Binding IsSelected, Converter={StaticResource SelectionBackgroundConverter}}" StrokeShape="RoundRectangle 10" Stroke="Transparent" HeightRequest="{OnPlatform MacCatalyst=63}">
                                                 <HorizontalStackLayout Spacing="5" HorizontalOptions="Start" Padding="20">
-                                                    <Label Text="{Binding PageIcon}" FontFamily="MaterialSymbolOutlined" FontSize="27" TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}" VerticalOptions="{OnPlatform MacCatalyst=Center}"/>
+                                                    <Label Text="{Binding PageIcon}" FontFamily="MauiSampleFontIcon" FontSize="{OnPlatform Default=24,MacCatalyst=23}" TextColor="{AppThemeBinding Light={StaticResource SalesDemoContentLabelTextColor}, Dark={StaticResource SalesDemoContentLabelTextColorDark}}" VerticalOptions="{OnPlatform MacCatalyst=Center}"/>
                                                     <Label Text="{Binding Title}"
                                                            FontSize="14"
                                                      VerticalOptions="Center" FontFamily="RobotoMedium" TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerTextColor}, Dark={StaticResource SalesDemoNavigationDrawerTextColorDark}}"/>
@@ -206,10 +206,10 @@
                            ShowIcon="True"
                            Background="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerBackgroundColor}, Dark={StaticResource SalesDemoNavigationDrawerBackgroundColorDark}}"
                            HorizontalOptions="End"
-                           Text="&#xe5cd;"
+                           Text="&#xe755;"
                            FontSize="30"
                            TextColor="{AppThemeBinding Light={StaticResource SalesDemoAssistViewHeaderTextColor}, Dark={StaticResource SalesDemoAssistViewHeaderTextColorDark}}"
-                           FontFamily="MaterialIcons"
+                           FontFamily="MauiSampleFontIcon"
                            WidthRequest="60"
                            CornerRadius="60"
                            HeightRequest="60"
