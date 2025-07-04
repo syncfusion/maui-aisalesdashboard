@@ -103,7 +103,7 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10"/>
                     </Border.StrokeShape>
-                    <Label x:Name="productIcon" Text="&#xf569;" FontFamily="MaterialSymbolOutlined" FontSize="25" VerticalTextAlignment="Center" 
+                    <Label x:Name="productIcon" Text="&#xf569;" FontFamily="MauiSampleFontIcon" FontSize="25" VerticalTextAlignment="Center" 
                            TextColor="{AppThemeBinding Light={StaticResource SalesDemoNavigationDrawerHeaderTextColor}, Dark={StaticResource SalesDemoNavigationDrawerHeaderTextColorDark}}" HorizontalOptions="Center" />
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnBoxTapped" />

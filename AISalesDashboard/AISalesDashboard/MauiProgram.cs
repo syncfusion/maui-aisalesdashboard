@@ -17,8 +17,6 @@ namespace AISalesDashboard
                     fonts.AddFont("Roboto-Medium.ttf", "RobotoMedium");
                     fonts.AddFont("Roboto-Regular.ttf", "Roboto");
                     fonts.AddFont("MauiSampleFontIcon.ttf", "MauiSampleFontIcon");
-                    fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons");
-                    fonts.AddFont("MaterialSymbolsOutlined.ttf", "MaterialSymbolOutlined");
                 });
 
 #if DEBUG

@@ -393,10 +393,10 @@ namespace AISalesDashboard
 
             Pages = new List<PageInfo>
             {
-               new() { Title = "Home", PageIcon = "\ue88a" },
-               new() { Title = "Products", PageIcon = "\uf569" },
-               new() { Title = "Orders", PageIcon = "\ue8cc" },
-               new() { Title = "Predictions", PageIcon = "\ue26b" }
+               new() { Title = "Home", PageIcon = "\ue738" },
+               new() { Title = "Products", PageIcon = "\ue82a" },
+               new() { Title = "Orders", PageIcon = "\ue73e" },
+               new() { Title = "Predictions", PageIcon = "\ue820" }
             };
 
             _suggestions = new ObservableCollection<ISuggestion>
@@ -491,7 +491,7 @@ namespace AISalesDashboard
             {
                 Title = "Total Revenue",
                 Value = TotalRevenue.HasValue ? $"${TotalRevenue.Value:N0}" : "$0",
-                Icon = "\ue227", IconColor = Color.FromArgb("#116DF9"), Background = Color.FromArgb("#CFE2FF"),
+                Icon = "\ue828", IconColor = Color.FromArgb("#116DF9"), Background = Color.FromArgb("#CFE2FF"),
                 ValueColor = (Color)(Application.Current!.RequestedTheme == AppTheme.Dark
                             ? Application.Current.Resources["SalesDemoContentLabelTextColorDark"]
                             : Application.Current.Resources["SalesDemoContentLabelTextColor"])
@@ -501,7 +501,7 @@ namespace AISalesDashboard
             {
                 Title = "Total Profit",
                 Value = TotalProfit.HasValue ? $"${TotalProfit.Value:N0}" : "$0",
-                Icon = "\uf3ee",
+                Icon = "\ue82c",
                 IconColor = Color.FromArgb("#E2227E"),
                 Background = Color.FromArgb("#FFDAEC"),
                 ValueColor = (Color)(Application.Current.RequestedTheme == AppTheme.Dark
@@ -513,7 +513,7 @@ namespace AISalesDashboard
             {
                 Title = "Profit Margin",
                 Value = ProfitMargin.HasValue ? $"+{ProfitMargin.Value:N1}%" : "0%",
-                Icon = "\uef92",
+                Icon = "\ue82b",
                 IconColor = Color.FromArgb("#F4890B"),
                 Background = Color.FromArgb("#FFE4C4"),
                 ValueColor = Color.FromArgb("#15A03D")
@@ -523,7 +523,7 @@ namespace AISalesDashboard
             {
                 Title = "Growth Rate",
                 Value = GrowthRate.HasValue ? $"{GrowthRate.Value:N1}%" : "0%",
-                Icon = "\ue8e5",
+                Icon = "\ue823",
                 IconColor = Color.FromArgb("#1BC92D"),
                 Background = Color.FromArgb("#E4FFE7"),
                 ValueColor = Color.FromArgb("#DC2626")
